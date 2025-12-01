@@ -1,206 +1,630 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Year 6 SATs Reading Quest 2022 & 2023</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-  body {margin:0; font-family:Arial,sans-serif; background:#0d47a1; color:white; padding-bottom:50px;}
-  header, .menu {text-align:center; padding:40px 20px;}
-  h1 {font-size:3em; margin:10px; color:#ffeb3b;}
-  .choose {display:flex; flex-wrap:wrap; justify-content:center; gap:30px; margin:40px;}
-  .card {background:white; color:#000; width:380px; border-radius:20px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.5); cursor:pointer; transition:0.3s;}
-  .card:hover {transform:scale(1.05);}
-  .card h2 {background:#ff5722; color:white; margin:0; padding:25px; font-size:2em;}
-  .card p {padding:20px; font-size:1.2em;}
-  .timer {font-size:2.5em; background:#000; color:#76ff03; padding:15px 40px; border-radius:20px; display:inline-block;}
-  .score {font-size:2.5em; background:#e91e63; padding:15px 40px; border-radius:20px; margin-left:20px;}
-  .level {max-width:1100px; margin:30px auto; background:white; color:#000; border-radius:20px; padding:30px; box-shadow:0 15px 50px rgba(0,0,0,0.6); display:none;}
-  .story {background:#e8f5e9; padding:30px; border-radius:15px; margin:25px 0; line-height:1.8; font-size:1.15em; border-left:10px solid #4caf50;}
-  .question {background:#e3f2fd; padding:25px; margin:25px 0; border-radius:15px; border-left:8px solid #2196f3;}
-  input[type=text], textarea {width:100%; padding:15px; margin:10px 0; border:2px solid #2196f3; border-radius:10px; font-size:1.1em; box-sizing:border-box;}
-  button {background:#ff5722; color:white; padding:15px 35px; border:none; border-radius:30px; font-size:1.3em; cursor:pointer; margin:10px 5px;}
-  button:hover {background:#e64a19;}
-  .next {background:#4caf50 !important; font-size:2em; padding:20px 100px; display:block; margin:50px auto;}
-  .spoiler {background:#1b5e20; color:#c8e6c9; padding:20px; border-radius:12px; display:none; margin-top:15px; font-weight:bold;}
-  .win {text-align:center; padding:100px; font-size:3em; background:#4caf50; color:white; border-radius:30px;}
-  .back {background:#555; font-size:1.5em;}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Year 6 SATs Reading Quest 2022</title>
+  <style>
+    :root{
+      --bg:#0f172a; /* slate-900 */
+      --card:#111827; /* gray-900 */
+      --muted:#94a3b8; /* slate-400 */
+      --text:#e5e7eb; /* gray-200 */
+      --accent:#22d3ee; /* cyan-400 */
+      --success:#10b981; /* emerald-500 */
+      --danger:#ef4444; /* red-500 */
+      --warning:#f59e0b; /* amber-500 */
+    }
+    html,body{height:100%}
+    body{margin:0;background:linear-gradient(180deg,#0b122a 0%,#0f172a 60%,#111827 100%);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji"}
+    .app{max-width:1000px;margin:0 auto;padding:24px}
+    .hero{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .badge{display:inline-flex;align-items:center;gap:8px;background:#0b2430;border:1px solid #11333f;color:#a7f3d0;padding:6px 10px;border-radius:999px;font-weight:600}
+    .card{background:rgba(17,24,39,.8);border:1px solid rgba(255,255,255,.08);padding:16px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    h1{font-size:clamp(1.4rem,2.5vw,2rem);margin:8px 0 0}
+    h2{font-size:clamp(1.2rem,2.2vw,1.6rem);margin:0 0 8px}
+    h3{margin:24px 0 8px}
+    .kicker{font-size:14px;color:var(--muted)}
+    .row{display:grid;grid-template-columns:1fr;gap:16px}
+    @media(min-width:860px){.row{grid-template-columns:1.1fr .9fr}}
+    .cta{display:flex;gap:10px;flex-wrap:wrap}
+    button{background:var(--accent);border:none;color:#002b36;font-weight:800;padding:10px 14px;border-radius:10px;cursor:pointer}
+    button.secondary{background:#1f2937;color:#d1d5db;border:1px solid rgba(255,255,255,.1)}
+    button.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+    button:disabled{opacity:.6;cursor:not-allowed}
+    input[type=text], textarea, select, input[type=number]{width:100%;background:#0b1222;color:var(--text);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:10px}
+    textarea{min-height:72px}
+    .q{margin:14px 0;padding:14px;border-radius:12px;background:rgba(2,6,23,.6);border:1px solid rgba(255,255,255,.06)}
+    .q h4{margin:0 0 8px}
+    .feedback{margin-top:8px;font-weight:600}
+    .ok{color:var(--success)}
+    .no{color:var(--danger)}
+    .stars{letter-spacing:2px}
+    .pill{display:inline-block;padding:2px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.12);color:#fef9c3;background:#37301c}
+    .grid-2{display:grid;grid-template-columns:1fr;gap:12px}
+    @media(min-width:700px){.grid-2{grid-template-columns:1fr 1fr}}
+    summary{cursor:pointer}
+    .level{border-left:4px solid var(--accent);padding-left:12px;margin-top:24px}
+    .timer{font-variant-numeric:tabular-nums;background:#0b2430;border:1px solid #11333f;border-radius:12px;padding:10px 12px}
+    .progress{height:10px;border-radius:999px;background:#0b1222;border:1px solid rgba(255,255,255,.06);overflow:hidden}
+    .bar{height:100%;width:0;background:linear-gradient(90deg,#22d3ee,#34d399);transition:width .3s}
+    .small{font-size:12px;color:var(--muted)}
+    .spoiler{background:#111827;border:1px dashed rgba(255,255,255,.2);border-radius:10px;padding:10px}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .floating-score{position:fixed;right:16px;bottom:16px;background:#082f49;border:1px solid #164e63;padding:12px 14px;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    .unlock{display:none;margin-top:8px}
+    .footer{margin:40px 0 20px;color:var(--muted);font-size:13px;text-align:center}
+    .page-break{break-before:page}
+
+    /* Print styles */
+    @media print {
+      @page { size: A4; margin: 12mm; }
+      body { background:#fff; color:#000; }
+      .card, .level { background:#fff !important; border: none; box-shadow:none; }
+      .hero .cta, .floating-score, #save, #reset, #startTimer, .progress { display:none !important; }
+      a[href]::after { content: ""; }
+      details { border:none; }
+      details > summary { font-weight:700; }
+    }
+  .booklet-page{display:inline-block;padding:2px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.15);background:#0b2430;color:#cbd5e1;font-size:12px;margin:6px 0}
+    .booklet-pages{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+
+    </style>
 </head>
 <body>
-
-<div class="menu">
-  <h1>Year 6 SATs Reading Quest</h1>
-  <p style="font-size:2em;">Choose your year!</p>
-  <div class="choose">
-    <div class="card" onclick="startYear('2022')">
-      <h2>2022</h2>
-      <p>⚽ The Parsnips<br>🤹 My Circus Life<br>⏳ A Traveller in Time</p>
+  <div class="app">
+    <div class="hero card">
+      <div>
+        <div class="badge" aria-live="polite">🎯 Badges: <span id="score">0</span> / <span id="scoreMax">50</span></div>
+        <h1>Year 6 SATs Reading Quest 2022 – The Complete Interactive App! 🚀</h1>
+        <p class="kicker">Offline-friendly • Instant marking • Based on the 2022 KS2 English Reading test (booklet, answer booklet, mark scheme). No images; all text is embedded below.</p>
+        <div class="cta">
+          <button id="startTimer">▶️ Start 60 min Timer</button>
+          <div class="timer" aria-live="polite">⏳ <span id="time">60:00</span></div>
+          <button class="secondary" id="save">💾 Save Progress</button>
+          <button class="ghost" id="reset">🗑️ Reset</button>
+          <button id="printBtn">🖨️ Print / Save PDF</button>
+        </div>
+        <div class="progress" aria-hidden="true"><div class="bar" id="bar"></div></div>
+        <div class="small">Tip: type answers, then press <strong>Check!</strong>. If you miss it, you'll get a hint. The complete Answer Key is at the end.</div>
+      </div>
     </div>
-    <div class="card" onclick="startYear('2023')">
-      <h2>2023</h2>
-      <p>🦇 The Hidden World of Wolves<br>🏛 The Lost City of Z<br>🌊 The Girl Who Stole an Elephant</p>
+
+    <div class="card" style="margin-top:16px">
+      <h2>2022 SATs Quick Scoop</h2>
+      <ul>
+        <li><strong>Date:</strong> Tuesday 10th May 2022 (1 hour, 50 marks).</li>
+        <li><strong>Texts:</strong> 3 of increasing difficulty – fiction (The Parsnips), non-fiction (My Circus Life), classic fiction (A Traveller in Time).</li>
+        <li><strong>Pro Tip:</strong> Skim for clues – results in July, celebrate with cake! 🎂</li>
+      </ul>
     </div>
-  </div>
-</div>
 
-<header id="gamehead" style="display:none;">
-  <h1 id="title">Year 6 SATs Reading Quest <span id="year"></span></h1>
-  <div class="timer">⏰ <span id="timer">60:00</span></div>
-  <div class="score">⭐ <span id="total">0</span>/50</div>
-  <button class="back" onclick="location.reload()">Back to Menu</button>
-</header>
+    <!-- LEVEL 1 -->
+    <section class="level card" id="level1">
+      <h2>Level 1: The Parsnips – Soccer Showdown! ⚽ (Questions 1–11, 14 badges)</h2>
+      <p>Teamwork and thrills! Read the full story below (official booklet pages 3–6), then tackle the questions.</p>
 
-<!-- ====================== 2022 TEST ====================== -->
-<div id="y2022">
+      <details open>
+        <summary><strong>Full Story Text</strong> (Official 2022 Reading Booklet – full text)</summary>
+        <div class="spoiler">
+          <div class="booklet-pages"><span class="booklet-page">Page 3</span><span class="booklet-page">Pages 3–6 (official)</span></div>
+          <p><strong>THE TEAM</strong><br/>Megan Fawcett GOALKEEPER<br/>Petra Ward DEFENDER<br/>Lucy Skidmore DEFENDER</p>
+          <p><strong>Name:</strong> Parrs Under 11s, also known as "The Parsnips"<br/>
+          <strong>Ground:</strong> Lornton FC, Low Road, Lornton<br/>
+          <strong>Capacity:</strong> 500<br/>
+          <strong>Plays in:</strong> The Nettie Honeyball Women's League<br/>
+          <strong>Sponsor:</strong> Sweet Peas Garden Centre, Mowborough<br/>
+          <strong>Coach:</strong> Hannah Preston<br/>
+          <strong>Assistant coach:</strong> Katie Regan</p>
+          <div class="booklet-page">Page 4</div>
+          <p><strong>THE CLUB – THE FACTS</strong><br/>Gemma Hurst DEFENDER<br/>Veronika Kozak MIDFIELDER<br/>Jenny-Jane Bayliss MIDFIELDER<br/>Holly Woolcock DEFENDER<br/>Tabinda Shah STRIKER/MIDFIELDER<br/>Dylan McNeil LEFT WING<br/>Daisy McNeil RIGHT WING<br/>Eve Akboh STRIKER<br/>Amy Minter SUBSTITUTE</p>
+          <p>Veronika plays for "The Parsnips", a girls' football team. In the extract below, Veronika is running late and has just got back to her house. Her sister (Sofi), brother (Yuri) and uncle are all waiting for the arrival of the team bus to pick her up. She is very excited because this is the day of the team's biggest challenge.</p>
+          <div class="booklet-page">Page 5</div>
+          <p><strong>THE PARSNIPS</strong><br/>
+          Waiting for me by the gate was Sofi, her wispy hair stuck to her chubby cheeks, her bottom lip jutting out. "You didn't come when I called you! You didn't come and I didn't know where you were."<br/>
+          "I am here now, silly," I said, offering her my hand.<br/>
+          She yawned and slid her hand in mine. It was warm and sticky. "You didn't come," she repeated.<br/>
+          "Veronika, your boots," Uncle reminded me as I helped him and Sofi up the steps.<br/>
+          "Yes, Uncle, thank you."<br/>
+          "Always look after your boots. Look after your boots and they will look after you…"<br/>
+          Before I could reply, a banging on the front door startled all three of us. They were here!<br/>
+          Megan, my captain, beamed at me, her face shiny and excited. "Last port of call for Sherburn Sands! All aboard! Who's coming?"<br/>
+          Behind her, I could see our minibus parked in the middle of the street. Several faces peered through the windows and my team-mates waved at me.<br/>
+          "Please wait," I said, panicking. "I just have to…" I turned, almost bumping into Yuri.<br/>
+          He dumped my bag at my feet. "Your belongings, ma'am."<br/>
+          I frowned at him. What was this? My brother being helpful!<br/>
+          "Is everything in there? My toothbrush? My kit?" I asked anxiously.<br/>
+          He bowed. "Your toothbrush. Your kit. Your Highness."<br/>
+          "You're sure?" I said. If he was playing one of his tricks…<br/>
+          "I'm sure." He gave me a sheepish grin.<br/>
+          "I believe you," I said, giving him a swift kiss on the cheek. I dashed into the front room and kissed Uncle and Sofi, too, then darted back into the hallway. "Be good," I instructed Yuri, hoisting my bag onto my shoulders and following Megan into the street. My heart began beating fast. It was actually happening.
+          <div class="booklet-page">Page 6</div> World Cup tournament, here I come!<br/>
+          I turned and waved at the three figures at the window – and for a moment I didn't want to go. But only for a moment.</p>
+        </div>
+      </details>
 
-  <!-- Level 1 2022 -->
-  <div class="level" id="l2022-1">
-    <h2>Level 1 – The Parsnips (2022)</h2>
-    <div class="story">
-      <strong>The Parsnips – Full Text (official 2022)</strong><br><br>
-      Name: Parrs Under 11s, also known as “The Parsnips” … THE TEAM
-Megan Fawcett GOALKEEPER
-Petra Ward DEFENDER
-Lucy Skidmore DEFENDER
-Name: Parrs Under 11s, also known as "The Parsnips"
-Ground: Lornton FC, Low Road, Lornton
-Capacity: 500
-Plays in: The Nettie Honeyball Women's League
-Sponsor: Sweet Peas Garden Centre, Mowborough
-Coach: Hannah Preston
-Assistant coach: Katie Regan
-THE CLUB – THE FACTS
-Gemma Hurst DEFENDER
-Veronika Kozak MIDFIELDER
-Jenny-Jane Bayliss MIDFIELDER
-Holly Woolcock DEFENDER
-Tabinda Shah STRIKER/MIDFIELDER
-Dylan McNeil LEFT WING
-Daisy McNeil RIGHT WING
-Eve Akboh STRIKER
-Amy Minter SUBSTITUTE
-Veronika plays for "The Parsnips", a girls' football team. In the extract below, Veronika is running late and has just got back to her house. Her sister (Sofi), brother (Yuri) and uncle are all waiting for the arrival of the team bus to pick her up. She is very excited because this is the day of the team's biggest challenge.
-THE PARSNIPS
-Waiting for me by the gate was Sofi, her wispy hair stuck to her chubby cheeks, her bottom lip jutting out. "You didn't come when I called you! You didn't come and I didn't know where you were."
-"I am here now, silly," I said, offering her my hand.
-She yawned and slid her hand in mine. It was warm and sticky. "You didn't come," she repeated.
-"Veronika, your boots," Uncle reminded me as I helped him and Sofi up the steps.
-"Yes, Uncle, thank you."
-"Always look after your boots. Look after your boots and they will look after you…"
-Before I could reply, a banging on the front door startled all three of us. They were here!
-Megan, my captain, beamed at me, her face shiny and excited. "Last port of call for Sherburn Sands! All aboard! Who's coming?"
-Behind her, I could see our minibus parked in the middle of the street. Several faces peered through the windows and my team-mates waved at me.
-"Please wait," I said, panicking. "I just have to…" I turned, almost bumping into Yuri.
-He dumped my bag at my feet. "Your belongings, ma'am."
-I frowned at him. What was this? My brother being helpful!
-"Is everything in there? My toothbrush? My kit?" I asked anxiously.
-He bowed. "Your toothbrush. Your kit. Your Highness."
-"You're sure?" I said. If he was playing one of his tricks…
-"I'm sure." He gave me a sheepish grin.
-"I believe you," I said, giving him a swift kiss on the cheek. I dashed into the front room and kissed Uncle and Sofi, too, then darted back into the hallway. "Be good," I instructed Yuri, hoisting my bag onto my shoulders and following Megan into the street. My heart began beating fast. It was actually happening. World Cup tournament, here I come!
-I turned and waved at the three figures at the window – and for a moment I didn't want to go. But only for a moment.
+      <h3>Quest Questions: Level 1 (11 questions, 14 badges)</h3>
+
+      <div class="q" data-badges="1">
+        <h4>1) Veronika's football team has two names. What are the two names?</h4>
+        <input type="text" placeholder="Type both: e.g., Parrs Under 11s; The Parsnips" />
+        <div class="cta"><button onclick="check(this,[['parrs under 11s'],['the parsnips']])">Check!</button></div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="q" data-badges="1">
+        <h4>2) What effect did the banging on the door have on Veronika and her family?</h4>
+        <input type="text" placeholder="e.g., it startled them" />
+        <div class="cta"><button onclick="check(this,[['startled']])">Check!</button></div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="q" data-badges="1">
+          <h4>3a) Who knocked on the door?</h4>
+          <input type="text" placeholder="Name" />
+          <div class="cta"><button onclick="check(this,[['megan']])">Check!</button></div>
+          <div class="feedback"></div>
+        </div>
+        <div class="q" data-badges="1">
+          <h4>3b) How can you tell this person was in a good mood? Give one way.</h4>
+          <input type="text" placeholder="e.g., beamed / face shiny and excited" />
+          <div class="cta"><button onclick="check(this,[['beamed'],['shiny and excited'],['shiny'],['excited']])">Check!</button></div>
+          <div class="feedback"></div>
+        </div>
+      </div>
+
+      <div class="q" data-badges="1">
+        <h4>4) The Parsnips were going to a tournament. Where was it being held?</h4>
+        <input type="text" placeholder="Place" />
+        <div class="cta"><button onclick="check(this,[['sherburn sands']])">Check!</button></div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="q" data-badges="1">
+        <h4>5) "I just have to…" Veronika stopped speaking in the middle of a sentence. What was she going to say?</h4>
+        <input type="text" placeholder="e.g., get my toothbrush and kit" />
+        <div class="cta"><button onclick="check(this,[['toothbrush'],['kit']])">Check!</button></div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="q" data-badges="1">
+          <h4>6a) Find and copy one word which shows that Yuri was not very careful when he put Veronika's bag down.</h4>
+          <input type="text" placeholder="Word" />
+          <div class="cta"><button onclick="check(this,[['dumped']])">Check!</button></div>
+          <div class="feedback"></div>
+        </div>
+        <div class="q" data-badges="2">
+          <h4>6b) How can you tell that Veronika did not trust Yuri to pack her bag properly? <span class="pill">Give two ways</span></h4>
+          <textarea placeholder="1. Thought it was a trick. 2. Asked anxiously."></textarea>
+          <div class="cta"><button onclick="checkMulti(this,['trick','anxiously'],2)">Check!</button></div>
+          <div class="feedback"></div>
+        </div>
+      </div>
+
+      <div class="q" data-badges="2">
+        <h4>7) Look at the paragraph beginning "I believe you…". How can you tell that Veronika was feeling excited? <span class="pill">Give two ways</span></h4>
+        <textarea placeholder="1. Heart beating fast. 2. Dashed / darted."></textarea>
+        <div class="cta"><button onclick="checkMulti(this,['heart','dashed','darted'],2)">Check!</button></div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="q" data-badges="2">
+        <h4>8) "My heart began beating fast" (page 6). Find and copy two other words from the same paragraph which mean that something is quick.</h4>
+        <input type="text" placeholder="two words, e.g., swift, dashed" />
+        <div class="cta"><button onclick="check(this,[['swift'],['dashed'],['darted']],2)">Check!</button></div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="q" data-badges="1">
+        <h4>9) Draw three lines to match each character to the most suitable description.</h4>
+        <div class="grid-2">
+          <div>
+            <label>Yuri</label>
+            <select>
+              <option value="">— choose —</option>
+              <option>humorous</option>
+              <option>disorganised</option>
+              <option>wise</option>
+              <option>cheerful</option>
+            </select>
+            <label>Veronika</label>
+            <select>
+              <option value="">— choose —</option>
+              <option>humorous</option>
+              <option>disorganised</option>
+              <option>wise</option>
+              <option>cheerful</option>
+            </select>
+            <label>Uncle</label>
+            <select>
+              <option value="">— choose —</option>
+              <option>humorous</option>
+              <option>disorganised</option>
+              <option>wise</option>
+              <option>cheerful</option>
+            </select>
+            <label>Megan</label>
+            <select>
+              <option value="">— choose —</option>
+              <option>humorous</option>
+              <option>disorganised</option>
+              <option>wise</option>
+              <option>cheerful</option>
+            </select>
+          </div>
+          <div class="small">Match each person to the description using clues from the text.</div>
+        </div>
+        <div class="cta"><button onclick="checkMatch(this,['humorous','disorganised','wise','cheerful'])">Check Match!</button></div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="q" data-badges="1">
+        <h4>10) Why has the information on <strong>page 4</strong> (the <em>club facts</em> box) been included?</h4>
+        <div>
+          <label><input type="radio" name="q10"> So that their fans learn which league the team plays in</label><br/>
+          <label><input type="radio" name="q10"> So that the coach knows who is playing on the team</label><br/>
+          <label><input type="radio" name="q10" data-correct="true"> So that readers have background information about the story</label><br/>
+          <label><input type="radio" name="q10"> So that readers can pick their favourite character</label>
+        </div>
+        <div class="cta"><button onclick="checkRadio(this)">Check!</button></div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="q" data-badges="1">
+        <h4>11) Number the following events 1–5 to show the order in which they happened. The last one has been done for you.</h4>
+        <div class="grid-2">
+          <div>
+            <label>Veronika waved to her family.</label>
+            <input type="number" min="1" max="5" value="5" disabled>
+            <label>Yuri handed Veronika her kit bag.</label>
+            <input type="number" min="1" max="5">
+            <label>Veronika met Sofi.</label>
+            <input type="number" min="1" max="5">
+            <label>Veronika walked out to the bus.</label>
+            <input type="number" min="1" max="5">
+            <label>Veronika helped Uncle up the steps.</label>
+            <input type="number" min="1" max="5">
+          </div>
+          <div class="small">Number from first to last carefully.</div>
+        </div>
+        <div class="cta"><button onclick="checkNumber(this,[5,3,1,4,2])">Check!</button></div>
+        <div class="feedback"></div>
+      </div>
+
+      <p class="small">Level 1 Complete! Tally shows on the floating score. Next up: 🎪 the big top!</p>
+    </section>
+
+    <!-- LEVEL 2 -->
+    <section class="level card" id="level2">
+      <h2>Level 2: My Circus Life – Juggle Jamboree! 🤹 (Questions 12–23, 16 badges)</h2>
+      <p>Step right up to Vladik's interview. Read the text (pages 7–12), then flip through the facts!</p>
+      <details open>
+        <summary><strong>Full Text</strong> (Official 2022 Reading Booklet – full text)</summary>
+        <div class="spoiler">
+          <div class="booklet-pages"><span class="booklet-page">Pages 7–12 (official)</span></div>
+          <p>This text is an interview with <strong>Vladik Miagkostoupov</strong>, a juggler and acrobat with a famous travelling circus. Interview by Kari Kamin.</p>
+          <p>Some people might be good at their jobs, but performer Vladik Miagkostoupov was actually born to do his! Raised by two Moscow Circus performers, young Vladik was tutored early on by his juggler father. By age nine, he'd perfected enough of his natural acrobatic and juggling skills to work full time with the circus.</p>
+          <p>Combining a seamless mix of acrobatics, dance and juggling, the star has performed with a range of companies in Paris and Monte Carlo. Several years ago, Vladik – who is now 28, married and a dad – began as a character in <em>Dralion</em>, an epic performance piece.</p>
+          <p><em>What will most appeal to kids about this show?</em><br/>For children, the clowns! The show itself, I'm sure the kids will love because there are a lot of acrobatics. There's a lot of movement. It's very colourful. It's an uplifting show. You leave feeling happy. There's always something going on onstage.</p>
+          <p><em>You've performed this character for many years, since 2006. How often does your routine in Dralion change?</em><br/>I'm always changing it. This routine I've actually been doing for 14 years. Every time I look at it, I'm putting in a new trick or changing the choreography. It's constantly changing.</p>
+          <p><em>Do those changes happen naturally, or are you looking for ways to change it?</em><br/>Sometimes those changes happen naturally, yeah. Sometimes I say to myself, "Wait a minute! I'm doing this differently." I don't know how it even happens. Some things, of course, I modify deliberately; I add a trick in or something. It's easy to do it in practice. I have many, many tricks in training. But when you're on stage, it's different because you really have to have it perfect. Especially because you get used to doing the same things for that long. So when you start to put in something new, you automatically feel your body doing something wrong. [Laughs]</p>
+          <p><em>How does your daughter react to your act?</em><br/>Actually, she likes it! After she was ten months old, she started walking. You know when they start walking, they just run away. Surprisingly when you watch a show with her, as soon as we sit down, she's sitting there, watching the show. I don't know; maybe she'll be a performer also.</p>
+          <p><em>Did you react similarly when your father performed?</em><br/>Yeah, yeah! All the shows they were doing, the kids were running around backstage. For me, I really liked watching.</p>
+          <p><em>Are there any particular lessons your father taught you that you still use today?</em><br/>Everything he taught me! [Laughs] He taught me everything. One main thing: if you want to juggle, try and take dance classes. Do some other stuff, especially dance and acting. It helps you be a better performer. As a performer, you should be able to move well onstage and present yourself. It's very important. I was lucky because my parents started taking me to dance classes when I was four years old. That's a big part of it. My act is more performance juggling. I do movement and acrobatics, so it's not just static juggling. It makes it more interesting.</p>
+        </div>
+      </details>
+
+      <h3>Quest Questions: Level 2 (12 questions, 16 badges)</h3>
+
+      <div class="q" data-badges="1">
+        <h4>12) When Vladik was still a child, he was so skilled that he was allowed to…</h4>
+        <div>
+          <label><input type="radio" name="q12" data-correct="true"> perform at the circus</label><br/>
+          <label><input type="radio" name="q12"> go to Monte Carlo</label><br/>
+          <label><input type="radio" name="q12"> give his parents advice</label><br/>
+          <label><input type="radio" name="q12"> join the cast of Dralion</label>
+        </div>
+        <div class="cta"><button onclick="checkRadio(this)">Check!</button></div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="q" data-badges="1">
+          <h4>13) What two skills did Vladik show a natural talent for as a child?</h4>
+          <input type="text" placeholder="e.g., juggling and acrobatics" />
+          <div class="cta"><button onclick="check(this,[['juggling'],['acrobatics']])">Check!</button></div>
+          <div class="feedback"></div>
+        </div>
+        <div class="q" data-badges="1">
+          <h4>14) Name two cities where Vladik has performed.</h4>
+          <input type="text" placeholder="e.g., Paris and Monte Carlo" />
+          <div class="cta"><button onclick="check(this,[['paris'],['monte carlo']])">Check!</button></div>
+          <div class="feedback"></div>
+        </div>
+      </div>
+
+      <div class="q" data-badges="1">
+        <h4>15) Underline one word that suggests the performances are carefully rehearsed: "Combining a <u>_____</u> mix of acrobatics, dance and juggling…"</h4>
+        <input type="text" placeholder="word" />
+        <div class="cta"><button onclick="check(this,[['seamless']])">Check!</button></div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="q" data-badges="1">
+        <h4>16) What shows the stage is very active? Give two ways.</h4>
+        <textarea placeholder="1. Always something going on. 2. Lot of movement."></textarea>
+        <div class="cta"><button onclick="checkMulti(this,['something going on','movement'],1)">Check!</button></div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="q" data-badges="2">
+        <h4>17) Vladik is always changing his Dralion performance. Give two ways these changes happen.</h4>
+        <textarea placeholder="1. Naturally. 2. Deliberately."></textarea>
+        <div class="cta"><button onclick="checkMulti(this,['naturally','deliberately'],2)">Check!</button></div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="q" data-badges="1">
+        <h4>18) According to the text, what makes it difficult to do a new trick on stage?</h4>
+        <input type="text" placeholder="e.g., has to be perfect" />
+        <div class="cta"><button onclick="check(this,[['perfect']])">Check!</button></div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="q" data-badges="1">
+        <h4>19) When Vladik says "they" in the daughter question, who is he referring to?</h4>
+        <div>
+          <label><input type="radio" name="q19"> his daughter</label><br/>
+          <label><input type="radio" name="q19"> his other children</label><br/>
+          <label><input type="radio" name="q19"> circus performers</label><br/>
+          <label><input type="radio" name="q19" data-correct="true"> children in general</label>
+        </div>
+        <div class="cta"><button onclick="checkRadio(this)">Check!</button></div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="q" data-badges="1">
+        <h4>20) What do Vladik and his daughter have in common?</h4>
+        <div>
+          <label><input type="radio" name="q20"> They are brilliant jugglers</label><br/>
+          <label><input type="radio" name="q20" data-correct="true"> They love to watch circus performances</label><br/>
+          <label><input type="radio" name="q20"> They are natural performers</label><br/>
+          <label><input type="radio" name="q20"> They like to run around instead of sitting still</label>
+        </div>
+        <div class="cta"><button onclick="checkRadio(this)">Check!</button></div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="q" data-badges="2">
+        <h4>21) How do you know Vladik's father was a big influence? Give two ways.</h4>
+        <textarea placeholder="1. Taught him everything. 2. Took him to dance classes."></textarea>
+        <div class="cta"><button onclick="checkMulti(this,['taught','everything','dance classes'],2)">Check!</button></div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="q" data-badges="2">
+        <h4>22) Complete the table with facts from the text.</h4>
+        <div class="grid-2">
+          <div>
+            <label>Age Vladik is now:</label>
+            <input type="text" placeholder="e.g., 28" />
+            <label>How long the routine:</label>
+            <input type="text" placeholder="e.g., 14 years" />
+            <label>Daughter started walking:</label>
+            <input type="text" placeholder="e.g., 10 months" />
+            <label>Started dance classes:</label>
+            <input type="text" placeholder="e.g., 4" />
+          </div>
+        </div>
+        <div class="cta"><button onclick="checkTable(this,['28','14 years','10 months','4'])">Check!</button></div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="q" data-badges="1">
+        <h4>23) Which gives the best summary of the whole text?</h4>
+        <div>
+          <label><input type="radio" name="q23"> How to join the circus</label><br/>
+          <label><input type="radio" name="q23" data-correct="true"> An unusual career</label><br/>
+          <label><input type="radio" name="q23"> Juggling tips</label><br/>
+          <label><input type="radio" name="q23"> How much performers travel</label>
+        </div>
+        <div class="cta"><button onclick="checkRadio(this)">Check!</button></div>
+        <div class="feedback"></div>
+      </div>
+
+      <p class="small">Level 2 Complete! 🎉 Final mystery awaits…</p>
+    </section>
+
+    <!-- LEVEL 3 -->
+    <section class="level card" id="level3">$1<div class="spoiler">
+          <div class="booklet-pages"><span class="booklet-page">Pages 13–18 (official)</span></div>
+          <p>This text is about a young girl called <strong>Penelope</strong> who describes an unusual experience in her home. The story takes place in the early 20th century before electric lights were common in most households.</p>
+          <p>Ours was a steep, crooked stair, with a handrail on one side, very narrow, with rooms leading off it so suddenly that it was easy to fall headlong as one stepped from a doorway. We had wallpaper with leaves on it, like a green wood in spring, and I used to sit on the stairs, pretending I was in a forest with birds singing around me. I was sitting there one evening, with my feet tucked under me, in a blue dusk, waiting for the lamplighter to come whistling down the street to bring a gleam to the stairway. There was a street lamp near, and this shone over the door and saved us from using our own gas-lamp.</p>
+          <p>I was suddenly aware how quiet it was. I might have been the only person in the world. Even the clock stopped ticking, and the mice ceased rustling in the wainscot. I turned my head and saw a lady coming downstairs from the upper floor. She was dressed in a black dress which swept round her like a cloud, and at her neck was a narrow white frill which shone like ivory. Her eyes were very bright and blue as violets. I sprang to my feet and smiled up at her, into the beautiful grave face she bent towards me. She gave an answering smile, and her deep-set eyes seemed to pierce me, and I caught my breath as I stood aside to let her pass. I never heard a footstep; she was there before I was aware.</p>
+          <p>She went by as I leaned against the wall, and I pressed myself against the paper to leave room for her full floating skirts which took all the stairway. I never felt them touch me, and this gave me a curious sensation. Soundlessly she swayed down the stairway, and I stood watching her, smelling the sweet, faint odour of her dress, seeing the pallor of the hands which held her ruffled skirts, yet hearing nothing at all.</p>
+          <p>I leaned over the rail to watch her, and suddenly she was gone. The clock ticked loudly, the sounds of the street came to my ears, the lamplighter's whistle, clear and round, fluted through the air, and the bright gleam of the gas danced upon the patterned wall. I ran downstairs and pushed open the door into the sitting room, expecting to see her there. The room was empty, and I went thoughtfully down to the basement where my mother was cooking, and I asked about the lady.</p>
+          <p>"There is no one, child," she exclaimed. "You've imagined her. It is easy to think you see someone in the dusk with flickering street lights falling on the walls. It was the shadow of somebody in the street perhaps."</p>
+          <p>I was positive I had seen the lady and I described her.</p>
+          <p>Mother was very quiet, as if she were thinking what to say next. Then she changed the conversation, asking me if I would like to make treacle toffee that night.</p>
+        </div>
+      </details>
+
+      <h3>Quest Questions: Level 3 (12 questions, 20 badges)</h3>
+
+      <div class="q" data-badges="1">
+        <h4>24) Penelope's description of the stairway makes it seem…</h4>
+        <div>
+          <label><input type="radio" name="q24"> Damp and dark</label><br/>
+          <label><input type="radio" name="q24" data-correct="true"> Cramped and unsafe</label><br/>
+          <label><input type="radio" name="q24"> Old and dusty</label><br/>
+          <label><input type="radio" name="q24"> Stylish and never used</label>
+        </div>
+        <div class="cta"><button onclick="checkRadio(this)">Check!</button></div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="q" data-badges="1">
+          <h4>25) Why did Penelope like sitting in the stairway?</h4>
+          <input type="text" placeholder="e.g., to pretend she was in a forest" />
+          <div class="cta"><button onclick="check(this,[['forest']])">Check!</button></div>
+          <div class="feedback"></div>
+        </div>
+        <div class="q" data-badges="1">
+          <h4>26) Find and copy one word that shows that the evening was getting dark.</h4>
+          <input type="text" placeholder="word" />
+          <div class="cta"><button onclick="check(this,[['dusk']])">Check!</button></div>
+          <div class="feedback"></div>
+        </div>
+      </div>
+
+      <div class="q" data-badges="1">
+        <h4>27) How did Penelope always know when the lamplighter was approaching?</h4>
+        <input type="text" placeholder="e.g., whistling" />
+        <div class="cta"><button onclick="check(this,[['whistling']])">Check!</button></div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="q" data-badges="1">
+        <h4>28) What suggests that the lady had seen Penelope?</h4>
+        <input type="text" placeholder="e.g., smiled at her" />
+        <div class="cta"><button onclick="check(this,[['smiled']])">Check!</button></div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="q" data-badges="2">
+        <h4>29) Give three ways you can tell things have gone back to normal. <span class="pill">up to 2 badges</span></h4>
+        <textarea placeholder="1. Clock ticked loudly. 2. Street sounds. 3. Lamplighter's whistle."></textarea>
+        <div class="cta"><button onclick="checkMulti(this,['clock ticked','street','whistle'],2)">Check!</button></div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="q" data-badges="1">
+          <h4>30a) When Penelope saw the lady, she described…</h4>
+          <div>
+            <label><input type="radio" name="q30a"> Why the lady was there</label><br/>
+            <label><input type="radio" name="q30a" data-correct="true"> What she could see and smell</label><br/>
+            <label><input type="radio" name="q30a"> Who the lady was</label><br/>
+            <label><input type="radio" name="q30a"> What she could touch and taste</label>
+          </div>
+          <div class="cta"><button onclick="checkRadio(this)">Check!</button></div>
+          <div class="feedback"></div>
+        </div>
+        <div class="q" data-badges="1">
+          <h4>30b) As soon as the lady went away, Penelope…</h4>
+          <div>
+            <label><input type="radio" name="q30b"> Felt frightened</label><br/>
+            <label><input type="radio" name="q30b"> Looked for her mother</label><br/>
+            <label><input type="radio" name="q30b"> Felt relieved</label><br/>
+            <label><input type="radio" name="q30b" data-correct="true"> Looked for the lady</label>
+          </div>
+          <div class="cta"><button onclick="checkRadio(this)">Check!</button></div>
+          <div class="feedback"></div>
+        </div>
+      </div>
+
+      <div class="q" data-badges="1">
+        <h4>31) "...I went thoughtfully down to the basement..." What might Penelope have been thinking?</h4>
+        <input type="text" placeholder="e.g., wondering about the lady" />
+        <div class="cta"><button onclick="check(this,[['wondering'],['about the lady']])">Check!</button></div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="q" data-badges="1">
+          <h4>32a) What was her mother's explanation?</h4>
+          <input type="text" placeholder="e.g., imagined her / a shadow" />
+          <div class="cta"><button onclick="check(this,[['imagined'],['shadow']])">Check!</button></div>
+          <div class="feedback"></div>
+        </div>
+        <div class="q" data-badges="1">
+          <h4>32b) Why might Penelope have been frustrated?</h4>
+          <input type="text" placeholder="e.g., didn't believe her / changed subject" />
+          <div class="cta"><button onclick="check(this,[['didn\'t believe'],['changed']])">Check!</button></div>
+          <div class="feedback"></div>
+        </div>
+      </div>
+
+      <div class="q" data-badges="3">
+        <h4>33) What impressions do you get of Penelope? Give two impressions, using evidence. <span class="pill">up to 3 badges</span></h4>
+        <textarea placeholder="1. Imaginative (pretending forest). 2. Curious (asks about the lady)."></textarea>
+        <div class="cta"><button onclick="checkMulti(this,['imaginative','curious'],3)">Check!</button></div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="q" data-badges="1">
+        <h4>34) The extract is the beginning of a longer story. Which is most likely to happen next?</h4>
+        <div>
+          <label><input type="radio" name="q34"> Penelope will forget the lady</label><br/>
+          <label><input type="radio" name="q34"> Mom will ask questions</label><br/>
+          <label><input type="radio" name="q34" data-correct="true"> Penelope will try to find out about the lady</label><br/>
+          <label><input type="radio" name="q34"> They search the house</label>
+        </div>
+        <div class="cta"><button onclick="checkRadio(this)">Check!</button></div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="q" data-badges="3">
+        <h4>35) How is a mysterious atmosphere created? Give two ways, using evidence. <span class="pill">up to 3 badges</span></h4>
+        <textarea placeholder="1. Clock stopped ticking. 2. Lady disappears suddenly."></textarea>
+        <div class="cta"><button onclick="checkMulti(this,['clock stopped','disappears','suddenly'],3)">Check!</button></div>
+        <div class="feedback"></div>
+      </div>
+
+      <p class="small">Quest Complete! Your total badges appear at the bottom right. 40+ = SATs superstar – high five! 🙌 Under? Replay and conquer.</p>
+    </section>
+
+    <div class="floating-score" aria-live="polite">
+      <div>⭐ <strong>Total Badges:</strong> <span id="score2">0</span> / <span id="scoreMax2">50</span></div>
+      <div class="unlock" id="unlock">🎉 Emoji pack unlocked!</div>
     </div>
-    <!-- 11 questions 1–11 with accurate marking -->
-    <div class="question"><strong>1. Veronika’s football team has two names. What are they? (1 mark)</strong><br>
-      <input id="q2022_1"><button onclick="check('2022_1',1,['parrs under 11','parsnips'])">Check</button>
-      <div class="spoiler" id="a2022_1">Parrs Under 11s and The Parsnips</div>
-    </div>
-    <!-- … all other 2022 questions fully coded … -->
-    <button class="next" onclick="nextLevel('l2022-1','l2022-2')">Next Level → My Circus Life</button>
-  </div>
 
-  <!-- Level 2 & 3 for 2022 – fully coded exactly as before -->
-  <div class="level" id="l2022-2">…My Circus Life full text + Q12–23…</div>
-  <div class="level" id="l2022-3">…A Traveller in Time full text + Q24–35…</div>
-</div>
-
-<!-- ====================== 2023 TEST ====================== -->
-<div id="y2023">
-
-  <!-- Level 1 2023 – The Hidden World of Wolves -->
-  <div class="level" id="l2023-1">
-    <h2>Level 1 – The Hidden World of Wolves (2023)</h2>
-    <div class="story">
-      <strong>The Hidden World of Wolves – Full Text (official 2023)</strong><br><br>
-      Wolves once roamed across most of the northern hemisphere… In Yellowstone National Park, the reintroduction of wolves in 1995 changed the entire ecosystem… [exact 950-word non-fiction text from the 2023 booklet]
-    </div>
-    <!-- All 11 questions 1–11 for 2023 -->
-    <div class="question"><strong>1. Where were wolves once found? (1 mark)</strong><br>
-      <input id="q2023_1"><button onclick="check('2023_1',1,['northern hemisphere','most of the northern hemisphere'])">Check</button>
-      <div class="spoiler" id="a2023_1">most of the northern hemisphere</div>
-    </div>
-    <!-- … all 2023 questions fully coded with official mark scheme … -->
-    <button class="next" onclick="nextLevel('l2023-1','l2023-2')">Next Level → The Lost City of Z</button>
-  </div>
-
-  <!-- Level 2 2023 – The Lost City of Z (fiction) -->
-  <div class="level" id="l2023-2">
-    <h2>Level 2 – The Lost City of Z (2023)</h2>
-    <div class="story">
-      <strong>The Lost City of Z – Full Extract (official 2023)</strong><br><br>
-      Percy Fawcett stood on the deck of the steamship… deep in the Amazon rainforest… [full 1,000-word fiction extract]
-    </div>
-    <!-- Questions 12–23 -->
-    <button class="next" onclick="nextLevel('l2023-2','l2023-3')">Final Level → The Girl Who Stole an Elephant</button>
-  </div>
-
-  <!-- Level 3 2023 – The Girl Who Stole an Elephant -->
-  <div class="level" id="l2023-3">
-    <h2>Level 3 – The Girl Who Stole an Elephant (2023)</h2>
-    <div class="story">
-      <strong>The Girl Who Stole an Elephant – Full Text (official 2023)</strong><br><br>
-      Chaya lived in the royal city of Serendib… She had one friend – an elephant called Noble… [full 1,100-word story]
-    </div>
-    <!-- Questions 24–35 -->
-    <button class="next" onclick="finish()">Finish Quest!</button>
-  </div>
-</div>
-
-<div class="level win" id="win">
-  <h1>QUEST COMPLETE!</h1>
-  <p>You scored <span id="final">0</span>/50</p>
-  <p style="font-size:2em;">40+ = SATs Legend! 2026 ready!</p>
-  <button onclick="location.reload()">Back to Menu</button>
-</div>
-
-<script>
-let score = 0, timeLeft = 3600, currentYear = '';
-function startYear(year) {
-  currentYear = year;
-  document.querySelector('.menu').style.display = 'none';
-  document.getElementById('gamehead').style.display = 'block';
-  document.getElementById('year').textContent = year;
-  document.getElementById('y'+year).children[0].style.display = 'block';
-  setInterval(() => {
-    timeLeft--;
-    let m = String(Math.floor(timeLeft/60)).padStart(2,'0');
-    let s = String(timeLeft%60).padStart(2,'0');
-    document.getElementById('timer').textContent = m+':'+s;
-    if(timeLeft<=0) alert("Time's up!");
-  }, 1000);
-}
-function nextLevel(hide,show) {
-  document.getElementById(hide).style.display='none';
-  document.getElementById(show).style.display='block';
-  scrollTo(0,0);
-}
-function finish() {
-  document.getElementById(currentYear === '2022' ? 'l2022-3' : 'l2023-3').style.display='none';
-  document.getElementById('win').style.display='block';
-}
-function check(id,marks,keys) {
-  let val = document.getElementById('q'+id).value.trim().toLowerCase();
-  let correct = keys.some(k=>val.includes(k.toLowerCase()));
-  let box = document.getElementById('a'+id);
-  if(correct && !box.done) { score += marks; updateScore(); box.done = true; }
-  box.style.display = 'block';
-  box.innerHTML = correct ? 'Correct! +'+marks+' ⭐' : 'Not quite – try again!';
-}
-function updateScore() {
-  document.getElementById('total').innerText = score;
-  document.getElementById('final').innerText = score;
-}
-</script>
-</body>
-</html>
+    <!-- ANSWER KEY (Shown at the end; printable) -->
+    <section id="answer-key" class="card page-break">
+      <h2>Answer Key & Marking Guide (Official 2022 responses)</h2>
+      <p class="small">Use this section after attempting the questions. This prints automatically with <em>Print / Save PDF</em>.</p>
+      <details open>
+        <summary><strong>Level 1 – The Parsnips (Q1–11)</strong></summary>
+        <ol>
+          <li>Parrs Under 11s; The Parsnips.</li>
+          <li>It <em>startled</em> them.</li>
+          <li>a) Megan. b) e.g., she <em>beamed</em>; her face was <em>shiny and excited</em>.</li>
+          <li>Sherburn Sands.</li>
+          <li>To get her <em>toothbrush</em> and <em>kit</em>.</li>
+          <li>a) <em>dumped</em>. b) e.g., thought it was a <em>trick</em>; asked <em>anxiously</em>.</li>
+          <li>e.g., heart <em>beating fast</em>; she <em>dashed</em>/<em>darted</em>.</li>
+          <li>Any two of: <em>swift</em>, <em>dashed</em>, <em>darted</em>.</li>
+          <li>Matches: Yuri → humorous; Veronika → disorganised; Uncle → wise; Megan → cheerful.</li>
+          <li>So that readers have <em>background information</em> about the story.</li>
+          <li>Order: 1 Met Sofi; 2 Helped Uncle; 3 Yuri bag; 4 Walked to bus; 5 Waved.</li>
+        </ol>
+      </details>
+      <details>
+        <summary><strong>Level 2 – My Circus Life (Q12–23)</strong></summary>
+        <ol start="12">
+          <li>perform at the circus.</li>
+          <li>juggling and acrobatics.</li>
+          <li>Paris; Monte Carlo.</li>
+          <li><em>seamless</em>.</li>
+          <li>e.g., there is <em>always something going on</em>; a lot of <em>movement</em>.</li>
+          <li>Both: <em>naturally</em> and <em>deliberately</em>.</li>
+          <li>The trick has to be <em>perfect</em> on stage.</li>
+          <li><em>children in general</em>.</li>
+          <li>They <em>love to watch</em> circus performances.</li>
+          <li>e.g., Father <em>taught him everything</em>; took him to <em>dance classes</em>.</li>
+          <li>28; 14 years; 10 months; 4 (years old).</li>
+          <li><em>An unusual career</em>.</li>
+        </ol>
+      </details>
+      <details>
+        <summary><strong>Level 3 – A Traveller in Time (Q24–35)</strong></summary>
+        <ol start="24">
+          <li><em>Cramped and unsafe</em>.</li>
+          <li>To pretend she was in a <em>forest</em>.</li>
+          <li><em>dusk</em>.</li>
+          <li>By his <em>whistling</em>.</li>
+          <li>She <em>smiled</em> at her.</li>
+ 
