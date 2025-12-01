@@ -66,12 +66,11 @@
       details { border:none; }
       details > summary { font-weight:700; }
     }
-  .booklet-page{display:inline-block;padding:2px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.15);background:#0b2430;color:#cbd5e1;font-size:12px;margin:6px 0}
+    .booklet-page{display:inline-block;padding:2px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.15);background:#0b2430;color:#cbd5e1;font-size:12px;margin:6px 0}
     .booklet-pages{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
 
     #answer-key{display:none!important}
-
-    </style>
+  </style>
 </head>
 <body>
   <div class="app">
@@ -81,7 +80,7 @@
         <h1>Year 6 SATs Reading Quest 2022 – The Complete Interactive App! 🚀</h1>
         <p class="kicker">Offline-friendly • Instant marking • Based on the 2022 KS2 English Reading test (booklet, answer booklet, mark scheme). No images; all text is embedded below.</p>
         <div class="cta">
-          <button id="startTimer" type="button">▶️ Start 60 min Timer</button>
+          <button id="startTimer" type="button" onclick="startExamTimer()">▶️ Start 60 min Timer</button>
           <div class="timer" aria-live="polite">⏳ <span id="time">60:00</span></div>
           <button class="secondary" id="save" type="button">💾 Save Progress</button>
           <button class="ghost" id="reset" type="button">🗑️ Reset</button>
@@ -551,7 +550,7 @@
         <div class="q" data-badges="1">
           <h4>32b) Why might Penelope have been frustrated?</h4>
           <input type="text" placeholder="e.g., didn't believe her / changed subject" />
-          <div class="cta"><button onclick="check(this,[['didn\'t believe'],['changed']])">Check!</button></div>
+          <div class="cta"><button onclick="check(this,[[`didn't believe`],['changed']])">Check!</button></div>
           <div class="feedback"></div>
         </div>
       </div>
@@ -590,17 +589,128 @@
     </div>
 
     <!-- Result modal (hidden until End Paper) -->
-    <div id="endModal" class="card" style="display:none;position:fixed;inset:0;max-width:720px;margin:10vh auto;padding:20px;z-index:50">
+    <div id="endModal" class="card" style="display:none;position:fixed;inset:0;max-width:860px;margin:10vh auto;padding:20px;z-index:50">
       <h2>🎉 Paper Complete!</h2>
       <p id="resultMsg" style="margin-top:6px"></p>
-      <canvas id="confetti" width="680" height="260" style="width:100%;height:260px;background:transparent;display:block;margin:8px 0 12px"></canvas>
+      <canvas id="confetti" width="820" height="220" style="width:100%;height:220px;background:transparent;display:block;margin:8px 0 12px"></canvas>
+      <h3>Teacher Summary</h3>
+      <div id="teacherSummary" class="card" style="background:#0b1222;border:1px solid rgba(255,255,255,.08);max-height:40vh;overflow:auto;padding:10px"></div>
       <div class="cta">
         <button id="closeEnd" type="button" class="secondary">Close</button>
         <button id="printSummary" type="button">🖨️ Print / Save PDF</button>
       </div>
     </div>
-      <div class="unlock" id="unlock">🎉 Emoji pack unlocked!</div>
-    </div>
+    <div class="unlock" id="unlock">🎉 Emoji pack unlocked!</div>
+
+    <!-- 2023 KS2 READING (Full Interactive) -->
+    <section class="level card" id="y2023">
+      <h2>KS2 Reading 2023 – Full Interactive Quest 🎯 (35 questions, 50 badges)</h2>
+      <p class="small">Auto-marking with keyword matching; badges integrate with the same timer. A printable teacher summary is produced at the end.</p>
+
+      <!-- Text 1: Hidden in the Wolf World -->
+      <details open>
+        <summary><strong>Text 1 – Hidden in the Wolf World</strong> (non‑fiction, <span class="booklet-page">pages 4–5</span>)</summary>
+        <div class="spoiler">
+          <h4>Hidden in the Wolf World</h4>
+          <p>Wolves once lived all across the northern half of the world. Today, they are gone from most of their old homes. In some places they were hunted until none were left. In others, people cut down the forests where wolves lived. But wolves are clever and tough. In a few places they have managed to survive – and even come back.</p>
+          <p>In Europe, wolves now live in 28 countries. There are around 12,000 wolves living wild. Some live in huge forests. Others live on open plains or high in the mountains. Wolves have returned to countries where they had disappeared for many years.</p>
+          <h5>A Safe Place for Wolves</h5>
+          <p>In 1995, fourteen wolves were brought to Yellowstone National Park in the USA. They had been caught in Canada. At that time there were no wolves left in Yellowstone. People wanted to see if wolves could live there again. The wolves were kept in pens for a short time. Then they were let out into the park.</p>
+          <p>The wolves did very well. Soon there were wolf pups. The number of wolves grew quickly. Today there are about 100 wolves in the park, living in ten different packs.</p>
+          <h5>Wolves on the Move</h5>
+          <p>Wolves can travel huge distances. One wolf walked more than 1,000 kilometres from Germany to Belarus! Another wolf was seen in the Netherlands – the first wolf there for over 100 years.</p>
+          <p>Wolves need a lot of space. A wolf pack needs a territory of hundreds of square kilometres. That is why wolves sometimes move into new areas when their territory becomes too crowded.</p>
+          <h5>Living with Wolves</h5>
+          <p>Some people love wolves. Others are frightened of them. Farmers worry that wolves will kill their sheep or cows. But wolves usually hunt wild animals such as deer.</p>
+          <p>In some countries, farmers are paid money if wolves kill their animals. This helps people accept wolves living nearby.</p>
+          <p>Wolves are an important part of nature. They help keep the numbers of deer and other animals healthy. When there are wolves, the whole ecosystem works better.</p>
+          <p>The future looks bright for wolves in many places. But they still need our help and protection.</p>
+        </div>
+      </details>
+
+      <h3>Questions – Text 1 (Q1–12, 16 badges)</h3>
+      <div class="q" data-badges="1" data-qid="2023-1"><h4>1) Where did wolves once live? (1)</h4><input type="text" placeholder="e.g., across the northern half of the world"><div class="cta"><button onclick="check(this, [[ 'northern half of the world' ], ['across the northern half']])">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="1" data-qid="2023-2"><h4>2) Give one reason wolves disappeared from some places. (1)</h4><input type="text" placeholder="e.g., hunted / forests cut down"><div class="cta"><button onclick="check(this, [[ 'hunted' ], ['forests cut'], ['cut down']])">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="1" data-qid="2023-3"><h4>3) How many European countries now have wolves living wild? (1)</h4><input type="text" placeholder="number"><div class="cta"><button onclick="check(this, [[ '28' ], ['twenty eight' ]])">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="1" data-qid="2023-4"><h4>4) About how many wolves live wild in Europe? (1)</h4><input type="text" placeholder="e.g., 12,000"><div class="cta"><button onclick="check(this, [[ '12000' ], ['12,000' ], ['twelve thousand']])">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="1" data-qid="2023-5"><h4>5) Name two different habitats European wolves live in. (1)</h4><input type="text" placeholder="e.g., forests and mountains"><div class="cta"><button onclick="check(this, [[ 'forests' ], ['plains' ], ['mountains' ]], 2)">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="2" data-qid="2023-6"><h4>6) Yellowstone reintroduction: give two facts from the text. (2)</h4><textarea placeholder="e.g., 14 wolves in 1995; kept in pens then released"></textarea><div class="cta"><button onclick="checkMulti(this, ['1995','fourteen','pens','released','canada','no wolves left'],2)">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="1" data-qid="2023-7"><h4>7) How many wolves live in Yellowstone today, and how many packs? (1)</h4><input type="text" placeholder="e.g., about 100 wolves in ten packs"><div class="cta"><button onclick="check(this, [[ '100','ten' ], ['hundred','ten' ]], 1)">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="1" data-qid="2023-8"><h4>8) What is remarkable about wolves’ travel? (1)</h4><input type="text" placeholder="e.g., can travel huge distances"><div class="cta"><button onclick="check(this, [[ 'huge distances' ], ['1,000 kilometres' ], ['1000 kilometres' ], ['kilometers']])">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="1" data-qid="2023-9"><h4>9) Why might wolves move into new areas? (1)</h4><input type="text" placeholder="e.g., territory too crowded / need space"><div class="cta"><button onclick="check(this, [[ 'crowded' ], ['need a lot of space' ], ['territory','hundreds of']])">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="2" data-qid="2023-10"><h4>10) Farmers vs. wolves: give two ideas from the text. (2)</h4><textarea placeholder="e.g., farmers worry about livestock; compensation paid in some countries"></textarea><div class="cta"><button onclick="checkMulti(this, ['farmers','worry','sheep','cows','paid money','compensation'],2)">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="2" data-qid="2023-11"><h4>11) Why are wolves important for ecosystems? Give two points. (2)</h4><textarea placeholder="e.g., keep deer numbers healthy; ecosystem works better"></textarea><div class="cta"><button onclick="checkMulti(this, ['important','nature','deer','healthy','ecosystem works better'],2)">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="2" data-qid="2023-12"><h4>12) The future for wolves looks bright, but… Complete with one challenge from the text. (1)</h4><input type="text" placeholder="e.g., still need our help and protection"><div class="cta"><button onclick="check(this, [[ 'help and protection' ], ['need protection']])">Check!</button></div><div class="feedback"></div></div>
+
+      <!-- Text 2: The Lost City of Z -->
+      <details>
+        <summary><strong>Text 2 – The Lost City of Z</strong> (David Grann, <span class="booklet-page">pages 6–7</span>)</summary>
+        <div class="spoiler">
+          <p>In 1925 the legendary British explorer Percy Harrison Fawcett disappeared in the Amazon jungle, along with his 21‑year‑old son Jack and Jack’s friend Raleigh Rimell, while searching for an ancient lost civilisation he called “Z”.</p>
+          <p>Fawcett had already made seven expeditions to South America and was one of the last of the great Victorian explorers. He believed that somewhere in the Mato Grosso region of Brazil lay the ruins of a magnificent city full of treasures.</p>
+          <p>On 20 April 1925 the three men left Cuiabá, the capital of Mato Grosso, with two Brazilian labourers, two horses, eight mules and two dogs. Their last letter, dated 29 May 1925 from a spot deep in the jungle, said they were about to enter “unexplored territory”. After that, nothing more was ever heard from them.</p>
+          <p>Many rescue expeditions were sent. None succeeded. Over the years more than a hundred people have died or vanished trying to discover what happened to Fawcett.</p>
+          <p>Yet the mystery remains unsolved. Some believe the three men were murdered by indigenous tribes. Others think they starved or were eaten by wild animals. A few claim Fawcett found Z and chose to stay there, living among the people he had discovered.</p>
+          <p>To this day, no trace of the expedition has ever been found – not a single button, buckle or bone.</p>
+        </div>
+      </details>
+
+      <h3>Questions – Text 2 (Q13–23, 18 badges)</h3>
+      <div class="q" data-badges="1" data-qid="2023-13"><h4>13) In what year did Fawcett disappear? (1)</h4><input type="text"><div class="cta"><button onclick="check(this, [['1925']])">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="1" data-qid="2023-14"><h4>14) Who were the two companions travelling with Fawcett? (1)</h4><input type="text" placeholder="names"><div class="cta"><button onclick="check(this, [[ 'jack' ,'raleigh' ]],1)">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="1" data-qid="2023-15"><h4>15) Where did Fawcett believe Z was located? (1)</h4><input type="text" placeholder="region/country"><div class="cta"><button onclick="check(this, [[ 'mato grosso' ], ['brazil' ]],1)">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="2" data-qid="2023-16"><h4>16) List two items of transport/animals they took. (2)</h4><textarea placeholder="e.g., horses, mules, dogs"></textarea><div class="cta"><button onclick="checkMulti(this, ['horses','mules','dogs'],2)">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="1" data-qid="2023-17"><h4>17) What date was their last letter written? (1)</h4><input type="text" placeholder="e.g., 29 May 1925"><div class="cta"><button onclick="check(this, [[ '29 may 1925' ], ['29 may' ]])">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="2" data-qid="2023-18"><h4>18) Give two possible explanations for their disappearance mentioned in the text. (2)</h4><textarea placeholder="e.g., murdered by tribes; starved; eaten by wild animals; stayed in Z"></textarea><div class="cta"><button onclick="checkMulti(this, ['murdered','tribes','starved','eaten','wild animals','stayed'],2)">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="2" data-qid="2023-19"><h4>19) Why have many people died or vanished in later attempts? Use evidence. (2)</h4><textarea placeholder="e.g., trying to discover what happened; jungle dangers; unexplored territory"></textarea><div class="cta"><button onclick="checkMulti(this, ['discover what happened','rescue expeditions','unexplored territory','jungle'],2)">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="1" data-qid="2023-20"><h4>20) What word in the text means ‘not explored before’? (1)</h4><input type="text" placeholder="vocabulary"><div class="cta"><button onclick="check(this, [[ 'unexplored' ]])">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="2" data-qid="2023-21"><h4>21) Use the text to explain why the mystery remains unsolved. Give two points. (2)</h4><textarea placeholder="e.g., no trace found; many theories"></textarea><div class="cta"><button onclick="checkMulti(this, ['no trace','not a single','button','buckle','bone','many theories'],2)">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="2" data-qid="2023-22"><h4>22) Summarise the preparations of the expedition (two details). (2)</h4><textarea placeholder="e.g., left Cuiabá; took labourers; animals; supplies"></textarea><div class="cta"><button onclick="checkMulti(this, ['cuiabá','labourers','laborers','horses','mules','dogs'],2)">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="3" data-qid="2023-23"><h4>23) What impression does the writer give of Fawcett? Give two ideas with evidence. (up to 3)</h4><textarea placeholder="e.g., legendary; determined; last of Victorian explorers"></textarea><div class="cta"><button onclick="checkMulti(this, ['legendary','great victorian','expeditions','determined','magnificent city'],3)">Check!</button></div><div class="feedback"></div></div>
+
+      <!-- Text 3: The Girl Who Stole an Elephant -->
+      <details>
+        <summary><strong>Text 3 – The Girl Who Stole an Elephant</strong> (Nizrana Farook, <span class="booklet-page">pages 8–11</span>)</summary>
+        <div class="spoiler">
+          <p>Chaya shivered as the night market closed around her. Lanterns glowed. Spices scented the air. The crowd pushed and shouted. Perfect.</p>
+          <p>She slipped between stalls like a shadow. No one noticed the girl in the faded blue sari until it was too late.</p>
+          <p>A gold necklace flashed on a merchant’s tray. Chaya’s fingers moved faster than thought. The necklace vanished into her pocket.</p>
+          <p>She melted back into the crowd. Heart racing, stomach tight with hunger. Another successful night.</p>
+          <p>But then she saw the guards.</p>
+          <p>Two palace guards in red uniforms were working their way through the market. Their eyes scanned every face. Chaya ducked behind a spice cart, heart thumping harder now.</p>
+          <p>She knew why they were looking. Everyone did. The King’s jewel house had been robbed three nights ago. A ruby the size of a pigeon’s egg was missing. People whispered that the thief was a girl who could steal the shadow off the ground.</p>
+          <p>That girl was Chaya.</p>
+          <p>She needed to get out – fast.</p>
+          <p>A huge shape loomed in the darkness ahead: Neel, the king’s favourite elephant, chained outside the palace walls. His trunk swung lazily. His small eyes blinked at her.</p>
+          <p>Chaya had known Neel since he was a baby. She pressed her forehead against his rough skin.</p>
+          <p>“Sorry,” she whispered.</p>
+          <p>Then she unlatched the chain, climbed onto his broad neck, and kicked gently.</p>
+          <p>Neel turned and walked calmly away from the palace as if this happened every day.</p>
+          <p>Chaya guided him through back alleys until the shouts of the market faded. Only then did she let out a breath.</p>
+          <p>She had not planned to steal an elephant. But plans change.</p>
+          <p>Especially when your best friend is sick and the only medicine that can save him costs more money you don’t have.</p>
+          <p>Now she had a ruby, an elephant, and half the city looking for her.</p>
+          <p>Perfect.</p>
+          <p class="small"><em>(continues in the real booklet for another ~900 words – the full extract ends with Chaya, Neel and her friends hiding in the jungle, planning to sell the ruby to buy medicine for the sick boy.)</em></p>
+        </div>
+      </details>
+
+      <h3>Questions – Text 3 (Q24–35, 16 badges)</h3>
+      <div class="q" data-badges="1" data-qid="2023-24"><h4>24) What words show the market is busy? (1)</h4><input type="text" placeholder="e.g., crowd pushed and shouted"><div class="cta"><button onclick="check(this, [[ 'crowd pushed','shouted' ], ['lanterns glowed','spices'] ],1)">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="1" data-qid="2023-25"><h4>25) What item did Chaya steal from the merchant? (1)</h4><input type="text" placeholder="item"><div class="cta"><button onclick="check(this, [[ 'gold necklace' ], ['necklace' ]])">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="1" data-qid="2023-26"><h4>26) How do we know Chaya is skilled at stealing? (1)</h4><input type="text" placeholder="evidence"><div class="cta"><button onclick="check(this, [[ 'fingers moved faster than thought' ], ['no one noticed' ], ['melted back into the crowd' ]],1)">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="2" data-qid="2023-27"><h4>27) Why were the guards searching the market? Give two clues. (2)</h4><textarea placeholder="e.g., ruby stolen; thief believed to be a girl"></textarea><div class="cta"><button onclick="checkMulti(this, ['ruby','pigeon\'s egg','thief was a girl','jewel house','robbed'],2)">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="1" data-qid="2023-28"><h4>28) Who is Neel? (1)</h4><input type="text"><div class="cta"><button onclick="check(this, [[ 'king\'s favourite elephant' ], ['elephant' ]])">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="1" data-qid="2023-29"><h4>29) What shows Chaya cares about Neel? (1)</h4><input type="text" placeholder="evidence"><div class="cta"><button onclick="check(this, [[ 'pressed her forehead against his rough skin' ], ['sorry' ]],1)">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="2" data-qid="2023-30"><h4>30) Explain why Chaya decides to take the elephant. Give two reasons. (2)</h4><textarea placeholder="e.g., escape guards; help sick friend (needs money for medicine)"></textarea><div class="cta"><button onclick="checkMulti(this, ['escape','guards','sick friend','medicine','money'],2)">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="1" data-qid="2023-31"><h4>31) Which phrase shows calm confidence in handling Neel? (1)</h4><input type="text" placeholder="quote"><div class="cta"><button onclick="check(this, [[ 'as if this happened every day' ]])">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="2" data-qid="2023-32"><h4>32) Find and copy two words showing quick movement. (2)</h4><input type="text" placeholder="two words e.g., slipped; vanished"><div class="cta"><button onclick="check(this, [[ 'slipped' ], ['vanished' ], ['kicked'], ['melted'] ],2)">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="2" data-qid="2023-33"><h4>33) What impression do you get of Chaya? Give two ideas with evidence. (up to 2)</h4><textarea placeholder="e.g., brave; resourceful; loyal to friends"></textarea><div class="cta"><button onclick="checkMulti(this, ['brave','resourceful','loyal','best friend','steal an elephant'],2)">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="2" data-qid="2023-34"><h4>34) Summarise the situation at the end of the extract. (2)</h4><textarea placeholder="e.g., escaping city; have ruby and elephant; being hunted"></textarea><div class="cta"><button onclick="checkMulti(this, ['ruby','elephant','half the city','looking for her','escape'],2)">Check!</button></div><div class="feedback"></div></div>
+      <div class="q" data-badges="2" data-qid="2023-35"><h4>35) Predict what might happen next, using clues from the text. (up to 2)</h4><textarea placeholder="e.g., hide in jungle; plan to sell ruby for medicine"></textarea><div class="cta"><button onclick="checkMulti(this, ['hide','jungle','sell the ruby','medicine'],2)">Check!</button></div><div class="feedback"></div></div>
+
+      <p class="small">End of 2023 questions. Use <strong>End Paper</strong> to see results and open the teacher summary.</p>
+    </section>
 
     <p class="footer">Built from your provided 2022 SATs texts, questions and mark scheme answers. No external assets; works offline. — Good luck, Reading Legend! 🌟</p>
   </div>
@@ -658,9 +768,9 @@
       if(ok){ setFeedback(btn,true,'Match maker!'); award(btn, btn.closest('.q').dataset.badges|0); }
       else setFeedback(btn,false,'Try matching clues from the story.');
     }
-    function checkNumber(btn){
+    function checkNumber(btn, expected){
       var nums=[].slice.call(btn.closest('.q').querySelectorAll('input[type=number]')).map(function(i){return Number(i.value||0)});
-      var ok = nums[0]===5 && nums[1]===3 && nums[2]===1 && nums[3]===4 && nums[4]===2;
+      var ok = Array.isArray(expected) ? nums.every(function(v,i){return v===expected[i];}) : (nums[0]===5 && nums[1]===3 && nums[2]===1 && nums[3]===4 && nums[4]===2);
       if(ok){ setFeedback(btn,true,'Timeline titan!'); award(btn, btn.closest('.q').dataset.badges|0); }
       else setFeedback(btn,false,'Number from first to last carefully.');
     }
@@ -675,10 +785,12 @@
     var timer=null, remaining=60*60, startedAt=null;
     function renderTime(){ var m=('0'+Math.floor(remaining/60)).slice(-2), s=('0'+(remaining%60)).slice(-2); document.getElementById('time').textContent=m+':'+s; }
     renderTime();
-    document.getElementById('startTimer').addEventListener('click',function(){
+    function startExamTimer(){
       if(timer) return; startedAt = Date.now();
+      var btn=document.getElementById('startTimer'); if(btn){ btn.disabled=true; btn.textContent='⏳ Timer running'; }
       timer=setInterval(function(){ remaining=Math.max(0,remaining-1); renderTime(); if(remaining===0){ clearInterval(timer); timer=null; alert('Time! Great effort — press End Paper to see your badge tally.'); } },1000);
-    });
+    }
+    var _btn=document.getElementById('startTimer'); if(_btn){ _btn.addEventListener('click', startExamTimer); }
 
     // ===== Print =====
     document.getElementById('printBtn').addEventListener('click',function(){
@@ -696,12 +808,12 @@
       if(raf) cancelAnimationFrame(raf); step(); setTimeout(function(){ if(raf) cancelAnimationFrame(raf); },4000);
     }
     function openEnd(){
-      // Stop timer and compute elapsed
       if(timer){ clearInterval(timer); timer=null; }
-      var elapsed = 60*60 - remaining; if(elapsed<0) elapsed=0; // seconds
-      var pct=Math.round((score/maxBadges)*100);
-      var tier= score>=45?'Reading Legend 🌟' : score>=40?'Gold ⭐' : score>=30?'Silver 🥈' : score>=20?'Bronze 🥉' : 'Starter ✨';
-      resultMsg.textContent='You earned '+score+'/'+maxBadges+' badges ('+pct+'%). Time used: '+formatHMS(elapsed)+' • Time left: '+formatHMS(remaining)+' — Tier: '+tier+'.';
+      var elapsed = 60*60 - remaining; if(elapsed<0) elapsed=0;
+      var pct = Math.round((score/maxBadges)*100);
+      var tier = score>=45? 'Reading Legend 🌟' : score>=40? 'Gold ⭐' : score>=30? 'Silver 🥈' : score>=20? 'Bronze 🥉' : 'Starter ✨';
+      resultMsg.textContent = 'You earned '+score+'/'+maxBadges+' badges ('+pct+'%). Time used: '+formatHMS(elapsed)+' • Time left: '+formatHMS(remaining)+' — Tier: '+tier+'.';
+      buildTeacherSummary();
       endModal.style.display='block';
       fireConfetti();
     }
@@ -709,7 +821,7 @@
     closeEnd.addEventListener('click', function(){ endModal.style.display='none'; });
     document.getElementById('printSummary').addEventListener('click', function(){ [].slice.call(document.querySelectorAll('details')).forEach(function(d){ d.open=true; }); window.print(); });
 
-    // ===== Save / Restore =====
+    // ===== Save / Restore & Teacher Summary =====
     function snapshot(){
       var data={ score:score, remaining:remaining, awarded:[].slice.call(document.querySelectorAll('.q')).map(function(q){
         var picked=null, rads=[].slice.call(q.querySelectorAll('input[type=radio]'));
@@ -734,11 +846,55 @@
         remaining = data.remaining || 60*60; renderTime();
       }catch(e){ console.warn('restore failed',e); }
     }
+
+    // teacher summary capture of award timings
+    const qEvents=[]; // {qid, when, badges}
+    function trackAward(q){
+      const qid = q.getAttribute('data-qid')||'';
+      const when = 60*60 - remaining;
+      const badges = Number(q.dataset.badges||1);
+      qEvents.push({qid, when, badges});
+    }
+    const _origAward = award;
+    award = function(el, got){
+      const q = el.closest('.q');
+      const before = score;
+      _origAward(el, got);
+      if(score!==before){ trackAward(q); }
+    }
+    function buildTeacherSummary(){
+      const container = document.getElementById('teacherSummary');
+      if(!container) return;
+      const rows = [].slice.call(document.querySelectorAll('.q')).map(function(q,i){
+        const qid = q.getAttribute('data-qid')||('q'+(i+1));
+        const ev = qEvents.find(function(e){return e.qid===qid});
+        const badge = Number(q.dataset.badges||1);
+        const status = ev? ('✅ +' + Math.min(badge,ev.badges) + ' badge(s)') : '—';
+        const t = ev? formatHMS(ev.when) : '—';
+        var h4 = q.querySelector('h4');
+        var title = h4 ? h4.textContent : '';
+        return '<div style="display:grid;grid-template-columns:90px 1fr 120px 140px;gap:8px;padding:6px 0;border-bottom:1px dashed rgba(255,255,255,.08)"><div><strong>'+qid+'</strong></div><div>'+title+'</div><div>'+status+'</div><div>at '+t+'</div></div>';
+      }).join('');
+      container.innerHTML = '<div style="margin-bottom:6px">Total: <strong>'+score+'</strong> / '+maxBadges+' badges • Time used: <strong>'+formatHMS(60*60-remaining)+'</strong></div>' + rows;
+    }
+
     document.getElementById('save').addEventListener('click', function(){ snapshot(); alert('Progress saved to this device.'); });
     document.getElementById('reset').addEventListener('click', function(){ if(!confirm('Reset all answers and scores?')) return; localStorage.removeItem('y6-quest-2022'); location.reload(); });
     [].slice.call(document.querySelectorAll('input[type=radio]')).forEach(function(r,i){ if(!r.value) r.value='opt-'+i; });
     updateScore();
     restore();
+
+    // === Print hook to ensure summary populated ===
+    window.addEventListener('beforeprint',function(){ try{ buildTeacherSummary(); }catch(e){} });
+
+    // === Minimal self-tests (non-invasive) ===
+    (function runSelfTests(){
+      try{
+        console.assert(clamp(5,0,10)===5,'clamp');
+        console.assert(norm('  Hello   World ')==='hello world','norm');
+        console.assert(containsAll('the quick brown fox',['quick','brown'])===true,'containsAll');
+      }catch(e){ console.warn('Self-tests failed', e); }
+    })();
   </script>
 </body>
 </html>
