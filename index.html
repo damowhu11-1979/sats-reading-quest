@@ -69,6 +69,8 @@
   .booklet-page{display:inline-block;padding:2px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.15);background:#0b2430;color:#cbd5e1;font-size:12px;margin:6px 0}
     .booklet-pages{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
 
+    #answer-key{display:none!important}
+
     </style>
 </head>
 <body>
@@ -79,14 +81,15 @@
         <h1>Year 6 SATs Reading Quest 2022 – The Complete Interactive App! 🚀</h1>
         <p class="kicker">Offline-friendly • Instant marking • Based on the 2022 KS2 English Reading test (booklet, answer booklet, mark scheme). No images; all text is embedded below.</p>
         <div class="cta">
-          <button id="startTimer">▶️ Start 60 min Timer</button>
+          <button id="startTimer" type="button">▶️ Start 60 min Timer</button>
           <div class="timer" aria-live="polite">⏳ <span id="time">60:00</span></div>
-          <button class="secondary" id="save">💾 Save Progress</button>
-          <button class="ghost" id="reset">🗑️ Reset</button>
-          <button id="printBtn">🖨️ Print / Save PDF</button>
+          <button class="secondary" id="save" type="button">💾 Save Progress</button>
+          <button class="ghost" id="reset" type="button">🗑️ Reset</button>
+          <button id="printBtn" type="button">🖨️ Print / Save PDF</button>
+          <button id="endBtn" type="button">🏁 End Paper</button>
         </div>
         <div class="progress" aria-hidden="true"><div class="bar" id="bar"></div></div>
-        <div class="small">Tip: type answers, then press <strong>Check!</strong>. If you miss it, you'll get a hint. The complete Answer Key is at the end.</div>
+        <div class="small">Tip: type answers, then press <strong>Check!</strong>. When you're done, click <strong>End Paper</strong> to see your result 🎉.</div>
       </div>
     </div>
 
@@ -438,7 +441,12 @@
     </section>
 
     <!-- LEVEL 3 -->
-    <section class="level card" id="level3">$1<div class="spoiler">
+    <section class="level card" id="level3">
+      <h2>Level 3: A Traveller in Time – Mystery Mansion! ⏳ (Questions 24–35, 20 badges)</h2>
+      <p>A spooky staircase ghost story from Alison Uttley. Read the extract (pages 13–18), then solve the enigma!</p>
+      <details open>
+        <summary><strong>Full Text</strong> (Official 2022 Reading Booklet – full text)</summary>
+        <div class="spoiler">
           <div class="booklet-pages"><span class="booklet-page">Pages 13–18 (official)</span></div>
           <p>This text is about a young girl called <strong>Penelope</strong> who describes an unusual experience in her home. The story takes place in the early 20th century before electric lights were common in most households.</p>
           <p>Ours was a steep, crooked stair, with a handrail on one side, very narrow, with rooms leading off it so suddenly that it was easy to fall headlong as one stepped from a doorway. We had wallpaper with leaves on it, like a green wood in spring, and I used to sit on the stairs, pretending I was in a forest with birds singing around me. I was sitting there one evening, with my feet tucked under me, in a blue dusk, waiting for the lamplighter to come whistling down the street to bring a gleam to the stairway. There was a street lamp near, and this shone over the door and saved us from using our own gas-lamp.</p>
@@ -579,52 +587,158 @@
 
     <div class="floating-score" aria-live="polite">
       <div>⭐ <strong>Total Badges:</strong> <span id="score2">0</span> / <span id="scoreMax2">50</span></div>
+    </div>
+
+    <!-- Result modal (hidden until End Paper) -->
+    <div id="endModal" class="card" style="display:none;position:fixed;inset:0;max-width:720px;margin:10vh auto;padding:20px;z-index:50">
+      <h2>🎉 Paper Complete!</h2>
+      <p id="resultMsg" style="margin-top:6px"></p>
+      <canvas id="confetti" width="680" height="260" style="width:100%;height:260px;background:transparent;display:block;margin:8px 0 12px"></canvas>
+      <div class="cta">
+        <button id="closeEnd" type="button" class="secondary">Close</button>
+        <button id="printSummary" type="button">🖨️ Print / Save PDF</button>
+      </div>
+    </div>
       <div class="unlock" id="unlock">🎉 Emoji pack unlocked!</div>
     </div>
 
-    <!-- ANSWER KEY (Shown at the end; printable) -->
-    <section id="answer-key" class="card page-break">
-      <h2>Answer Key & Marking Guide (Official 2022 responses)</h2>
-      <p class="small">Use this section after attempting the questions. This prints automatically with <em>Print / Save PDF</em>.</p>
-      <details open>
-        <summary><strong>Level 1 – The Parsnips (Q1–11)</strong></summary>
-        <ol>
-          <li>Parrs Under 11s; The Parsnips.</li>
-          <li>It <em>startled</em> them.</li>
-          <li>a) Megan. b) e.g., she <em>beamed</em>; her face was <em>shiny and excited</em>.</li>
-          <li>Sherburn Sands.</li>
-          <li>To get her <em>toothbrush</em> and <em>kit</em>.</li>
-          <li>a) <em>dumped</em>. b) e.g., thought it was a <em>trick</em>; asked <em>anxiously</em>.</li>
-          <li>e.g., heart <em>beating fast</em>; she <em>dashed</em>/<em>darted</em>.</li>
-          <li>Any two of: <em>swift</em>, <em>dashed</em>, <em>darted</em>.</li>
-          <li>Matches: Yuri → humorous; Veronika → disorganised; Uncle → wise; Megan → cheerful.</li>
-          <li>So that readers have <em>background information</em> about the story.</li>
-          <li>Order: 1 Met Sofi; 2 Helped Uncle; 3 Yuri bag; 4 Walked to bus; 5 Waved.</li>
-        </ol>
-      </details>
-      <details>
-        <summary><strong>Level 2 – My Circus Life (Q12–23)</strong></summary>
-        <ol start="12">
-          <li>perform at the circus.</li>
-          <li>juggling and acrobatics.</li>
-          <li>Paris; Monte Carlo.</li>
-          <li><em>seamless</em>.</li>
-          <li>e.g., there is <em>always something going on</em>; a lot of <em>movement</em>.</li>
-          <li>Both: <em>naturally</em> and <em>deliberately</em>.</li>
-          <li>The trick has to be <em>perfect</em> on stage.</li>
-          <li><em>children in general</em>.</li>
-          <li>They <em>love to watch</em> circus performances.</li>
-          <li>e.g., Father <em>taught him everything</em>; took him to <em>dance classes</em>.</li>
-          <li>28; 14 years; 10 months; 4 (years old).</li>
-          <li><em>An unusual career</em>.</li>
-        </ol>
-      </details>
-      <details>
-        <summary><strong>Level 3 – A Traveller in Time (Q24–35)</strong></summary>
-        <ol start="24">
-          <li><em>Cramped and unsafe</em>.</li>
-          <li>To pretend she was in a <em>forest</em>.</li>
-          <li><em>dusk</em>.</li>
-          <li>By his <em>whistling</em>.</li>
-          <li>She <em>smiled</em> at her.</li>
- 
+    <p class="footer">Built from your provided 2022 SATs texts, questions and mark scheme answers. No external assets; works offline. — Good luck, Reading Legend! 🌟</p>
+  </div>
+
+  <script>
+    // ===== Helpers =====
+    function clamp(n,min,max){ return Math.max(min,Math.min(max,n)); }
+    function norm(s){ s=(s||'').toLowerCase(); s=s.split(' ').filter(Boolean).join(' '); return s.trim(); }
+    function containsAll(hay, arr){ hay=norm(hay); for(var i=0;i<arr.length;i++){ if(hay.indexOf(norm(arr[i]))===-1) return false; } return true; }
+
+    // ===== Scoring =====
+    var maxBadges=50, score=0, awarded=new WeakSet();
+    function updateScore(){
+      var bar=document.getElementById('bar');
+      document.getElementById('score').textContent=score;
+      document.getElementById('score2').textContent=score;
+      document.getElementById('scoreMax').textContent=maxBadges;
+      document.getElementById('scoreMax2').textContent=maxBadges;
+      if(bar) bar.style.width=(score/maxBadges*100)+'%';
+      if(score>=40) document.getElementById('unlock').style.display='block';
+    }
+    function award(el, got){
+      var q=el.closest('.q'), badges=Number(q.dataset.badges||1);
+      if(!awarded.has(q)){ score+=got>0?clamp(got,0,badges):0; awarded.add(q); updateScore(); }
+    }
+    function stars(n){ return new Array((n||1)+1).join('⭐'); }
+    function setFeedback(btn, ok, msg){
+      var q=btn.closest('.q'), fb=q.querySelector('.feedback');
+      fb.innerHTML = ok ? '✅ <span class="ok">'+(msg||'Correct!')+' <span class="stars">'+stars(Number(q.dataset.badges||1))+'</span></span>'
+                        : '❌ <span class="no">'+(msg||'Not quite — try again.')+'</span>';
+    }
+    function getPrevInput(btn){ return btn.closest('.q').querySelector('textarea, input[type=text]'); }
+
+    // ===== Checkers =====
+    function check(btn, groups, minCount){
+      var val=norm(getPrevInput(btn).value), need=minCount||groups.length, m=0;
+      for(var i=0;i<groups.length;i++){ if(containsAll(val,groups[i])) m++; }
+      if(m>=need){ setFeedback(btn,true,'Spot on!'); award(btn, btn.closest('.q').dataset.badges|0); }
+      else { setFeedback(btn,false,'Hint: scan the text for key words.'); }
+    }
+    function checkMulti(btn, ks, maxB){
+      var txt=norm(btn.closest('.q').querySelector('textarea').value), got=0;
+      for(var i=0;i<ks.length;i++) if(txt.indexOf(norm(ks[i]))!==-1) got++;
+      if(got>0){ setFeedback(btn,true, got>=ks.length?'Excellent evidence!':'Good — partial credit.'); award(btn, clamp(got,1,maxB)); }
+      else setFeedback(btn,false,'Look for key phrases from the text.');
+    }
+    function checkRadio(btn){
+      var q=btn.closest('.q'), c=q.querySelector('input[type=radio][data-correct]'), p=q.querySelector('input[type=radio]:checked');
+      if(!p) return setFeedback(btn,false,'Pick an option.');
+      if(p===c){ setFeedback(btn,true,'Nice choice!'); award(btn,q.dataset.badges|0); } else setFeedback(btn,false,'Recheck the text.');
+    }
+    function checkMatch(btn, expected){
+      var ok=true, sels=[].slice.call(btn.closest('.q').querySelectorAll('select'));
+      for(var i=0;i<sels.length;i++) if(norm(sels[i].value)!==norm(expected[i])) ok=false;
+      if(ok){ setFeedback(btn,true,'Match maker!'); award(btn, btn.closest('.q').dataset.badges|0); }
+      else setFeedback(btn,false,'Try matching clues from the story.');
+    }
+    function checkNumber(btn){
+      var nums=[].slice.call(btn.closest('.q').querySelectorAll('input[type=number]')).map(function(i){return Number(i.value||0)});
+      var ok = nums[0]===5 && nums[1]===3 && nums[2]===1 && nums[3]===4 && nums[4]===2;
+      if(ok){ setFeedback(btn,true,'Timeline titan!'); award(btn, btn.closest('.q').dataset.badges|0); }
+      else setFeedback(btn,false,'Number from first to last carefully.');
+    }
+    function checkTable(btn, expected){
+      var vals=[].slice.call(btn.closest('.q').querySelectorAll('input[type=text]')).map(function(i){return norm(i.value)});
+      var ok=true; for(var i=0;i<expected.length;i++) if(vals[i]!==norm(expected[i])) ok=false;
+      if(ok){ setFeedback(btn,true,'Fact finder!'); award(btn, btn.closest('.q').dataset.badges|0); }
+      else setFeedback(btn,false,'Double-check the numbers in the interview.');
+    }
+
+    // ===== Timer =====
+    var timer=null, remaining=60*60, startedAt=null;
+    function renderTime(){ var m=('0'+Math.floor(remaining/60)).slice(-2), s=('0'+(remaining%60)).slice(-2); document.getElementById('time').textContent=m+':'+s; }
+    renderTime();
+    document.getElementById('startTimer').addEventListener('click',function(){
+      if(timer) return; startedAt = Date.now();
+      timer=setInterval(function(){ remaining=Math.max(0,remaining-1); renderTime(); if(remaining===0){ clearInterval(timer); timer=null; alert('Time! Great effort — press End Paper to see your badge tally.'); } },1000);
+    });
+
+    // ===== Print =====
+    document.getElementById('printBtn').addEventListener('click',function(){
+      [].slice.call(document.querySelectorAll('details')).forEach(function(d){ d.open=true; });
+      window.print();
+    });
+
+    // ===== End Paper (results + confetti + auto-stop timer) =====
+    var endBtn=document.getElementById('endBtn'), endModal=document.getElementById('endModal'), resultMsg=document.getElementById('resultMsg'), closeEnd=document.getElementById('closeEnd');
+    function formatHMS(sec){ var m=Math.floor(sec/60), s=sec%60; return (m<10?'0':'')+m+':' + (s<10?'0':'')+s; }
+    function fireConfetti(){
+      var c=document.getElementById('confetti'); if(!c) return; var ctx=c.getContext('2d'), W=c.width, H=c.height;
+      var parts=[]; for(var i=0;i<120;i++) parts.push({x:Math.random()*W,y:-Math.random()*H,r:4+Math.random()*6,vx:-1+Math.random()*2,vy:1+Math.random()*2.5,a:Math.random()*6.28});
+      var raf; function step(){ ctx.clearRect(0,0,W,H); for(var i=0;i<parts.length;i++){ var p=parts[i]; p.x+=p.vx; p.y+=p.vy; p.a+=0.05; if(p.y>H){p.y=-10;p.x=Math.random()*W;} ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(Math.sin(p.a)); ctx.fillStyle='hsl('+ (p.x/W*360) +',95%,60%)'; ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r); ctx.restore(); } raf=requestAnimationFrame(step); }
+      if(raf) cancelAnimationFrame(raf); step(); setTimeout(function(){ if(raf) cancelAnimationFrame(raf); },4000);
+    }
+    function openEnd(){
+      // Stop timer and compute elapsed
+      if(timer){ clearInterval(timer); timer=null; }
+      var elapsed = 60*60 - remaining; if(elapsed<0) elapsed=0; // seconds
+      var pct=Math.round((score/maxBadges)*100);
+      var tier= score>=45?'Reading Legend 🌟' : score>=40?'Gold ⭐' : score>=30?'Silver 🥈' : score>=20?'Bronze 🥉' : 'Starter ✨';
+      resultMsg.textContent='You earned '+score+'/'+maxBadges+' badges ('+pct+'%). Time used: '+formatHMS(elapsed)+' • Time left: '+formatHMS(remaining)+' — Tier: '+tier+'.';
+      endModal.style.display='block';
+      fireConfetti();
+    }
+    endBtn.addEventListener('click', openEnd);
+    closeEnd.addEventListener('click', function(){ endModal.style.display='none'; });
+    document.getElementById('printSummary').addEventListener('click', function(){ [].slice.call(document.querySelectorAll('details')).forEach(function(d){ d.open=true; }); window.print(); });
+
+    // ===== Save / Restore =====
+    function snapshot(){
+      var data={ score:score, remaining:remaining, awarded:[].slice.call(document.querySelectorAll('.q')).map(function(q){
+        var picked=null, rads=[].slice.call(q.querySelectorAll('input[type=radio]'));
+        for(var i=0;i<rads.length;i++){ if(rads[i].checked){ picked=rads[i].value; break; } }
+        return { a: awarded.has(q), v: (q.querySelector('textarea, input[type=text]')||{}).value || null, radios: picked, selects: [].slice.call(q.querySelectorAll('select')).map(function(s){return s.value;}), numbers: [].slice.call(q.querySelectorAll('input[type=number]')).map(function(n){return n.value;}) };
+      })};
+      localStorage.setItem('y6-quest-2022', JSON.stringify(data));
+    }
+    function restore(){
+      var raw=localStorage.getItem('y6-quest-2022'); if(!raw) return;
+      try{
+        var data=JSON.parse(raw); score=data.score||0; updateScore();
+        var qs=[].slice.call(document.querySelectorAll('.q'));
+        for(var i=0;i<qs.length;i++){
+          var d=(data.awarded||[])[i]; if(!d) continue; var q=qs[i];
+          if(d.v!=null){ var t=q.querySelector('textarea, input[type=text]'); if(t) t.value=d.v; }
+          if(d.radios!=null){ var radios=[].slice.call(q.querySelectorAll('input[type=radio]')); for(var k=0;k<radios.length;k++){ if(radios[k].value===d.radios){ radios[k].checked=true; break; } } }
+          if(d.selects){ var selects=[].slice.call(q.querySelectorAll('select')); for(var si=0;si<selects.length;si++){ selects[si].value=d.selects[si]||''; } }
+          if(d.numbers){ var nums=[].slice.call(q.querySelectorAll('input[type=number]')); for(var ni=0;ni<nums.length;ni++){ nums[ni].value=d.numbers[ni]||''; } }
+          if(d.a){ awarded.add(q); q.querySelector('.feedback').innerHTML='<span class="ok">✅ Answer checked.</span>'; }
+        }
+        remaining = data.remaining || 60*60; renderTime();
+      }catch(e){ console.warn('restore failed',e); }
+    }
+    document.getElementById('save').addEventListener('click', function(){ snapshot(); alert('Progress saved to this device.'); });
+    document.getElementById('reset').addEventListener('click', function(){ if(!confirm('Reset all answers and scores?')) return; localStorage.removeItem('y6-quest-2022'); location.reload(); });
+    [].slice.call(document.querySelectorAll('input[type=radio]')).forEach(function(r,i){ if(!r.value) r.value='opt-'+i; });
+    updateScore();
+    restore();
+  </script>
+</body>
+</html>
